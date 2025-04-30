@@ -1,0 +1,10 @@
+{
+  "users": [
+    {
+      "id": "1745447716156",
+      "username": "Aryan_Patel",
+      "password": "$2a$10$5Bs1ZMs/IKffQ6SVjgv1wuip7TZHDn87tvxKfltt3aBpPWApfen4.",
+      "role": "admin"
+    }
+  ]
+}

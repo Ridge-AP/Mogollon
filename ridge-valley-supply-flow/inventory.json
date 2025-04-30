@@ -1,0 +1,12 @@
+[
+  {
+    "id": "1745608505240",
+    "productId": "1745608484176",
+    "warehouseId": "w1",
+    "quantityOnHand": 10,
+    "uom": "boxws",
+    "reorderPoint": 0,
+    "createdAt": "2025-04-25T19:15:05.240Z",
+    "updatedAt": "2025-04-25T19:15:05.240Z"
+  }
+]
