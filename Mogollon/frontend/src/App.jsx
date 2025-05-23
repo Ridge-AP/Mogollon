@@ -12,10 +12,14 @@ import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Layout   from "./components/Layout";
-import Stub     from "./components/Stub";
 
-// **NEW** import your Inventory stub/page
-import Inventory from "./pages/Inventory";
+// Inventory list & detail pages
+import Inventory       from "./pages/Inventory";
+import InventoryDetail from "./pages/InventoryDetails";
+
+// RFQ pages
+import RFQ       from "./pages/RFQ";
+import RFQCreate from "./pages/RFQCreate";
 
 function Logout() {
   localStorage.clear();
@@ -33,9 +37,9 @@ export default function App() {
       <Routes>
 
         {/* Public routes */}
-        <Route path="/"        element={<Navigate to="/login" replace />} />
-        <Route path="/login"   element={<Login />} />
-        <Route path="/logout"  element={<Logout />} />
+        <Route path="/"         element={<Navigate to="/login" replace />} />
+        <Route path="/login"    element={<Login />} />
+        <Route path="/logout"   element={<Logout />} />
         <Route path="/register" element={<RegisterAndLogout />} />
 
         {/* All protected routes share the Layout */}
@@ -46,34 +50,43 @@ export default function App() {
             </ProtectedRoute>
           }
         >
-          {/* Admin: full access */}
+
+          {/* Admin Dashboard */}
           <Route
             path="/admin"
             element={
               <ProtectedRoute roles={["admin"]}>
-                <Stub title="Admin Dashboard" />
+                <Navigate to="/dashboard" replace />
               </ProtectedRoute>
             }
           />
 
-          {/* General Dashboard: any authenticated role */}
+          {/* General Dashboard */}
           <Route
             path="/dashboard"
-            element={<Stub title="General Dashboard" />}
+            element={<Navigate to="/inventory" replace />}
           />
 
-          {/* Inventory module */}
-          <Route
-            path="/inventory"
-            element={<Inventory />}
-          />
+          {/* Inventory list & detail */}
+          <Route path="/inventory"     element={<Inventory />} />
+          <Route path="/inventory/:id" element={<InventoryDetail />} />
 
-          {/* RFQs */}
+          {/* RFQs listing */}
           <Route
             path="/rfqs"
             element={
               <ProtectedRoute roles={["admin","warehouse-staff","vendor"]}>
-                <Stub title="RFQs" />
+                <RFQ />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* RFQ creation */}
+          <Route
+            path="/rfqs/create"
+            element={
+              <ProtectedRoute roles={["admin","warehouse-staff","vendor"]}>
+                <RFQCreate />
               </ProtectedRoute>
             }
           />
@@ -83,7 +96,7 @@ export default function App() {
             path="/orders"
             element={
               <ProtectedRoute roles={["admin","sales-rep"]}>
-                <Stub title="Orders" />
+                <Navigate to="/orders" />
               </ProtectedRoute>
             }
           />
@@ -93,7 +106,7 @@ export default function App() {
             path="/quotes"
             element={
               <ProtectedRoute roles={["admin","sales-rep"]}>
-                <Stub title="Quotes" />
+                <Navigate to="/quotes" />
               </ProtectedRoute>
             }
           />
@@ -103,7 +116,7 @@ export default function App() {
             path="/vmi"
             element={
               <ProtectedRoute roles={["admin","sales-rep"]}>
-                <Stub title="VMI Tools" />
+                <Navigate to="/vmi" />
               </ProtectedRoute>
             }
           />
@@ -113,17 +126,17 @@ export default function App() {
             path="/ecommerce"
             element={
               <ProtectedRoute roles={["admin","neighbor-client"]}>
-                <Stub title="E-Commerce Store" />
+                <Navigate to="/ecommerce" />
               </ProtectedRoute>
             }
           />
 
-          {/* Other role-specific stubs: sales, warehouse, store, portal, vendor */}
+          {/* Other role-specific */}
           <Route
             path="/sales"
             element={
               <ProtectedRoute roles={["sales-rep"]}>
-                <Stub title="Sales Rep Portal" />
+                <Navigate to="/sales" />
               </ProtectedRoute>
             }
           />
@@ -131,7 +144,7 @@ export default function App() {
             path="/warehouse"
             element={
               <ProtectedRoute roles={["warehouse-staff"]}>
-                <Stub title="Warehouse Staff UI" />
+                <Navigate to="/warehouse" />
               </ProtectedRoute>
             }
           />
@@ -139,7 +152,7 @@ export default function App() {
             path="/store"
             element={
               <ProtectedRoute roles={["neighbor-client"]}>
-                <Stub title="Neighbor Client Store" />
+                <Navigate to="/store" />
               </ProtectedRoute>
             }
           />
@@ -147,7 +160,7 @@ export default function App() {
             path="/portal"
             element={
               <ProtectedRoute roles={["other-client"]}>
-                <Stub title="Client Portal (PO/RFQ)" />
+                <Navigate to="/portal" />
               </ProtectedRoute>
             }
           />
@@ -155,7 +168,7 @@ export default function App() {
             path="/vendor"
             element={
               <ProtectedRoute roles={["vendor"]}>
-                <Stub title="Vendor RFQ Response Portal" />
+                <Navigate to="/vendor" />
               </ProtectedRoute>
             }
           />

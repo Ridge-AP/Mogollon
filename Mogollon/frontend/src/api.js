@@ -6,8 +6,8 @@ import { ACCESS_TOKEN } from "./constants";
 // axios.defaults.withCredentials = true;
 
 const api = axios.create({
-  baseURL: "http://127.0.0.1:8000/api/",  // our DRF router is mounted under /api/
-});
+   baseURL: "/api",   // use Vite’s proxy to forward to Django
+ });
 
 // Attach JWT from localStorage to every request
 api.interceptors.request.use(
