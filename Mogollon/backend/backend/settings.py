@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "api",
     "inventory.apps.InventoryConfig",
     "accounts",
+    "rfqs",
 ]
 
 MIDDLEWARE = [
